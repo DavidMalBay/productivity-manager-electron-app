@@ -1,0 +1,26 @@
+{
+    "Work" :{
+        "Monday Meeting" :
+        {
+            "editor" : "Quill",
+            "dateCreated": "3/3/10",
+            "lastModified" : "3/3/10",
+            "tags" : ["work", "ideas"],
+            "isStarred" : 0,
+            "isArchived" : 0,
+            "content" : "today we talked about some cool ideas"
+        }
+    },
+    "Life" :{
+        "Weekend" :
+        {
+            "editor" : "Quill",
+            "dateCreated": "3/3/10",
+            "lastModified" : "3/3/10",
+            "tags" : ["fun", "weekend"],
+            "isStarred" : 0,
+            "isArchived" : 0,
+            "content" : "I dont have any plans for the weekend yet"
+        }
+    }
+}
