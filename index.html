@@ -1,29 +1,47 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Productivity Manager</title>
-    <link href="https://cdn.quilljs.com/1.3.5/quill.snow.css" rel="stylesheet">
-    <link rel="stylesheet" href="node_modules\bootstrap\dist\css\bootstrap.css">
-    <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="node_modules\font-awesome\css\font-awesome.css"></link>
-    <link rel="stylesheet" href="node_modules\fullcalendar\dist\fullcalendar.css"></link>
-    <script type="text/javascript" src="node_modules\jquery\dist\jquery.min.js" onload="window.$ = window.jQuery = module.exports;"></script>
-    <script type="text/javascript" src="node_modules\moment\moment.js"></script>
-    <script src="node_modules\fullcalendar\dist\fullcalendar.js"></script>
 
-  </head>
-  <body>
-   
-   <script>
-      // You can also require other files to run in this process
-      require('./renderer.js')
-    </script>
-      <script src="./node_modules/monaco-editor/min/vs/loader.js"></script>
+<head>
+  <meta charset="UTF-8">
+  <title>Productivity Manager</title>
+  <link href="https://cdn.quilljs.com/1.3.5/quill.snow.css" rel="stylesheet">
+  <link rel="stylesheet" href="node_modules\bootstrap\dist\css\bootstrap.css">
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="node_modules\font-awesome\css\font-awesome.css"></link>
+  <link rel="stylesheet" href="node_modules\fullcalendar\dist\fullcalendar.css"></link>
+  <script type="text/javascript" src="node_modules\jquery\dist\jquery.min.js" onload="window.$ = window.jQuery = module.exports;"></script>
+  <script type="text/javascript" src="node_modules\moment\moment.js"></script>
+  <script src="node_modules\fullcalendar\dist\fullcalendar.js"></script>
 
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4"
-        crossorigin="anonymous"></script>
-  </body>
+</head>
+
+<body>
+
+
+  <div class="navigation-menu">
+    hi
+  </div>
+  <div class="navigation-menu-medium">
+    blue
+  </div>
+  <div id="userContent">
+      <input type="text" id="note-title" placeholder="Note Title"/>
+
+    <div id="quillEditor">
+    </div>
+  </div>
+
+
+  <script>
+    // You can also require other files to run in this process
+    require('./renderer.js')
+  </script>
+  <script src="./node_modules/monaco-editor/min/vs/loader.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>

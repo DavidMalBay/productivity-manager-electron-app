@@ -1,0 +1,55 @@
+:root {
+    --navigation-menu-bg-color: rgba(49, 49, 49, 0.933);
+    --navigation-menu-text-color: white;
+    --navigation-menu-medium-bg-color: rgb(235, 235, 235);
+    --navigation-menu-medium-text-color: black;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.navigation-menu {
+    height: 100vh;
+    width: 160px;
+    background-color: var(--navigation-menu-bg-color);
+    color: var(--navigation-menu-text-color);
+    float: left;
+}
+
+.navigation-menu-medium {
+    height: 100vh;
+    width: 200px;
+    float: left;
+    background-color: var(--navigation-menu-medium-bg-color);
+    color: var(--navigation-menu-medium-text-color)
+}
+
+#userContent {
+    height: calc(100% - 43px - 28.96px);
+    width: calc(100% - 360px);
+    float: left;
+    border: 1px
+}
+
+#quillEditor {
+    height: 100%;
+}
+
+.ql-container.ql-snow {
+    border: none !important;
+}
+
+#note-title {
+    border: 0px;
+    width: 100%;
+    padding-left: 15px;
+}
+
+.ql-toolbar.ql-snow {
+    border: none;
+}
