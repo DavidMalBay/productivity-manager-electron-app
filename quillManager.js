@@ -26,11 +26,18 @@ var toolbarOptions = [
     }],
     ['clean'] // remove formatting button
   ];
-var quill = new Quill(container, {
-  modules: {
-    toolbar: toolbarOptions,
-    // bindings: bindings
-  },
-    theme: 'snow',
-  });
+  var quill = new Quill(container, {
+    modules: {
+      toolbar: toolbarOptions,
+      // bindings: bindings
+    },
+      theme: 'snow',
+    });
 
+
+module.exports = {
+  setContent: function(content){
+    quill.setText(content)
+  }
+  
+}

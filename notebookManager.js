@@ -1,36 +1,67 @@
 var fs = require('fs')
+const quill = require("./quillManager")
+var notebookSelected = ""
+var noteSelected = ""
 
 module.exports = {
     pathToTodosJson: function () {
-        return __dirname + "\\data\\Notebooks.json";
+        return __dirname + "\\data\\Notebooks.json"
     },
+
+    loadFile: function () {
+        return JSON.parse(fs.readFileSync(module.exports.pathToTodosJson(), 'utf8'))
+
+    },
+
     init: function () {
-        text = JSON.parse(fs.readFileSync(module.exports.pathToTodosJson(), 'utf8'))
-        for (var key in text) {
-            $(".navigation-menu").append(`<p">${key}</p>`)
-            for(var title in text[key]){
-                var editor = text[key][title]["editor"]
-                var dateCreated = text[key][title]["dateCreated"]
-                var lastModified = text[key][title]["lastModified"]
-                var tags = text[key][title]["tags"]
-                var isStarred = text[key][title]["isStarred"]
-                var isArchived = text[key][title]["isArchived"]
-                var content = text[key][title]["content"]
-                $(".navigation-menu-medium").append(`<p>${title}</p>`)
-                console.log(content)
-            }
+        fileData = module.exports.loadFile();
+
+        for (var key in fileData) {
+            $(".navigation-menu").append(`<p class="notebook">${key}</p>`)
+        }
+
+        $('.navigation-menu').on('click', '.notebook', function () {
+            $(".navigation-menu-medium").find(".note").remove()
+            module.exports.displayNotesInNotebook($(this).text())
+            notebookSelected = $(this).text()
+        });
+
+
+        $('.navigation-menu-medium').on('click', '.note', function () {
+            noteSelected = $(this).text()
+            $("#note-title").val($(this).text())
+            module.exports.loadNote()
+
+        });
+    },
+
+    displayNotesInNotebook: function (Notebook) {
+        fileData = module.exports.loadFile();
+        for (var title in fileData[Notebook]) {
+            $(".navigation-menu-medium").append(`<p class="note">${title}</p>`)
         }
     },
 
-    loadNote: function() {
+    loadNote: function () {
+        fileData = module.exports.loadFile();
+        var editor = fileData[notebookSelected][noteSelected]["editor"]
+        var dateCreated = fileData[notebookSelected][noteSelected]["dateCreated"]
+        var lastModified = fileData[notebookSelected][noteSelected]["lastModified"]
+        var tags = fileData[notebookSelected][noteSelected]["tags"]
+        var isStarred = fileData[notebookSelected][noteSelected]["isStarred"]
+        var isArchived = fileData[notebookSelected][noteSelected]["isArchived"]
+        var content = fileData[notebookSelected][noteSelected]["content"]
+        quill.setContent("")
+        quill.setContent(content)
+
         //check file type
         //load desired editor
         //clear editor
         //load the note
-        //text[activeNotebook][activeNote]["content"]
+        //fileData[activeNotebook][activeNote]["content"]
         //example
-        //console.log(text["Work"]["Monday Meeting"]["content"])
+        //console.log(fileData["Work"]["Monday Meeting"]["content"])
 
     }
-
 }
+

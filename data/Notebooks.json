@@ -21,6 +21,16 @@
             "isStarred" : 0,
             "isArchived" : 0,
             "content" : "I dont have any plans for the weekend yet"
+        },
+        "Dog" :
+        {
+            "editor" : "Quill",
+            "dateCreated": "3/3/10",
+            "lastModified" : "3/3/10",
+            "tags" : ["fun", "weekend"],
+            "isStarred" : 0,
+            "isArchived" : 0,
+            "content" : "We should take him to the dog park soon"
         }
     }
 }

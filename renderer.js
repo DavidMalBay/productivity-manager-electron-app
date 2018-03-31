@@ -1,4 +1,4 @@
-require("./quillManager")
+const quillEditor = require("./quillManager")
 const ipcRenderer = require('electron').ipcRenderer;
 const NotebookManager = require('./notebookManager')
 
