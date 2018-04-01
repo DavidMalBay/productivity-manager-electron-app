@@ -3,6 +3,7 @@ const quillEditor = require("./quillManager")
 
 var fileData = JSON.parse(fs.readFileSync(__dirname + "\\data\\Notebooks.json", 'utf8'))
 var lastSelectedNotbook = "Work" // give the user the option to set a default open location 
+//var lastSelectedNote = //read from userSettings.json
 var notebookSelected = "" //if empty should this defualt to last notbook selected or defaultnotbook
 var noteSelected = ""
 var defaultNotebook = "Work"
