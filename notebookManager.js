@@ -2,8 +2,8 @@ var fs = require('fs')
 const quillEditor = require("./quillManager")
 
 var fileData = JSON.parse(fs.readFileSync(__dirname + "\\data\\Notebooks.json", 'utf8'))
-
-var notebookSelected = ""
+var lastSelectedNotbook = "Work" // give the user the option to set a default open location 
+var notebookSelected = "" //if empty should this defualt to last notbook selected or defaultnotbook
 var noteSelected = ""
 var defaultNotebook = "Work"
 var saveNotebook = ""
@@ -14,6 +14,9 @@ module.exports = {
         for (var key in fileData) {
             $(".navigation-menu").append(`<p class="notebook">${key}</p>`)
         }
+
+        module.exports.displayNotesInNotebook(lastSelectedNotbook)
+
 
         $('.navigation-menu').on('click', '.notebook', function () {
             $(".navigation-menu-medium").find(".note").remove()
@@ -28,6 +31,7 @@ module.exports = {
             module.exports.loadNote()
 
         });
+
     },
 
     displayNotesInNotebook: function (Notebook) {
@@ -37,6 +41,9 @@ module.exports = {
     },
 
     loadNote: function () {
+        if(notebookSelected == ""){
+            notebookSelected = lastSelectedNotbook
+        } 
         var editor = fileData[notebookSelected][noteSelected]["editor"]
         var dateCreated = fileData[notebookSelected][noteSelected]["dateCreated"]
         var lastModified = fileData[notebookSelected][noteSelected]["lastModified"]
@@ -66,8 +73,6 @@ module.exports = {
         quillEditor.clear();
         $("#note-title").val("")
         $("#note-title").focus()
-
-
     },
 
     saveNote: function () {
@@ -95,6 +100,8 @@ module.exports = {
         fs.writeFile(__dirname + "\\data\\Notebooks.json", JSON.stringify(fileData), function (err) {
             console.log(err)
         }) 
+
+        //if new make sure you append the new item to the notes list currently this isnt working
     }
 
 }

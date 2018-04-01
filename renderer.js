@@ -14,4 +14,5 @@ ipcRenderer.on('new-note', function (currentNotebook) {
 });
 
 
+
  
