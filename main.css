@@ -67,6 +67,10 @@ body {
     margin-bottom: 5px;
 }
 
+.note {
+    font-size: 15px;
+}
+
 .notebook:hover {
     background-color: var(--navigation-menu-hover-bg-color)
 }
@@ -81,4 +85,10 @@ body {
 
 .active-note{
     background-color: var(--navigation-menu-medium-active-bg-color)
+}
+
+.navigation-menu-title,
+.navigation-menu-medium-title {
+    padding-left: 7px;
+    margin-bottom: 7px;
 }

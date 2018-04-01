@@ -7,7 +7,7 @@
             "tags": ["work", "ideas"],
             "isStarred": 0,
             "isArchived": 0,
-            "content": "today we talked about some cool ideas"
+            "content": ""
         }
         
     },
@@ -19,7 +19,7 @@
             "tags": ["fun", "weekend"],
             "isStarred": 0,
             "isArchived": 0,
-            "content": "I dont have any plans for the weekend yet"
+            "content": ""
         },
         "Dog": {
             "editor": "Quill",
@@ -28,7 +28,7 @@
             "tags": ["fun", "weekend"],
             "isStarred": 0,
             "isArchived": 0,
-            "content": "We should take him to the dog park soon"
+            "content": ""
         }
     }
 }

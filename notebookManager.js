@@ -9,10 +9,18 @@ var noteSelected = ""
 var defaultNotebook = "Work"
 var saveNotebook = ""
 
+// function truncate(string){
+//     if (string.length > 20)
+//        return string.substring(0,20)+'...';
+//     else
+//        return string;
+//  };
+
 module.exports = {
 
     init: function () {
         for (var key in fileData) {
+            // key = truncate(key)
             $(".navigation-menu").append(`<p class="notebook">${key}</p>`)
         }
 
@@ -39,6 +47,7 @@ module.exports = {
 
     displayNotesInNotebook: function (Notebook) {
         for (var title in fileData[Notebook]) {
+            // title = truncate(title)
             $(".navigation-menu-medium").append(`<p class="note">${title}</p>`)
         }
     },
@@ -100,9 +109,10 @@ module.exports = {
         }
 
         fileData[saveNotebook][noteTitle] = noteInformation
-        fs.writeFile(__dirname + "\\data\\Notebooks.json", JSON.stringify(fileData), function (err) {
-            console.log(err)
+        fs.writeFile(__dirname + "\\data\\Notebooks.json", JSON.stringify(fileData), function () {
         }) 
+        $(`.notebook:contains("${notebookSelected}")`).click();
+
 
         //if new make sure you append the new item to the notes list currently this isnt working
     }
