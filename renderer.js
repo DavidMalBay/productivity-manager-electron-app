@@ -1,8 +1,8 @@
 const quillEditor = require("./quillManager")
 const ipcRenderer = require('electron').ipcRenderer;
 const NotebookManager = require('./notebookManager')
-
 NotebookManager.init();
+$("#modal").load("./menu/modal.html")
 
 
 ipcRenderer.on('save', function (currentNotebook) {
@@ -15,4 +15,8 @@ ipcRenderer.on('new-note', function (currentNotebook) {
 
 
 
- 
+ipcRenderer.on('new-notebook', function () {
+  $('#context-modal').modal('toggle');
+});
+
+

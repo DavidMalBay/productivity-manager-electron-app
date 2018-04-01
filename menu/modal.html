@@ -1,0 +1,32 @@
+<div class="modal fade" id="context-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <input class="form-control" type="text" id="modalInput">
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $('#context-modal').on('shown.bs.modal', function () {
+        console.log("on");
+        $("#modalInput").focus();
+        $("#modalInput").val("");
+    });
+
+    $('#context-modal').on('hide.bs.modal', function () {
+        console.log("on");
+        $("#modalInput").val("");
+    });
+
+    $('#modalInput').keypress(function (event) {
+        if (event.keyCode == 13 && $('#modalInput').val() != "") {
+            $(".new-notebook").click()
+        } else {
+            console.log("please enter a notebook name")
+        }
+    });
+</script>

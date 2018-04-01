@@ -53,8 +53,17 @@ body {
 
 #note-title {
     border: 0px;
-    width: 100%;
+    width: 80%;
     padding-left: 15px;
+}
+
+#tags{
+    border: 0px;
+    width: 20%;
+    float: right;
+    padding-left: 5px;
+    color: rgb(161, 161, 161)
+
 }
 
 .ql-toolbar.ql-snow {
