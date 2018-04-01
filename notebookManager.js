@@ -1,21 +1,14 @@
 var fs = require('fs')
 const quill = require("./quillManager")
+
+var fileData = JSON.parse(fs.readFileSync(__dirname + "\\data\\Notebooks.json", 'utf8'))
+
 var notebookSelected = ""
 var noteSelected = ""
 
 module.exports = {
-    pathToTodosJson: function () {
-        return __dirname + "\\data\\Notebooks.json"
-    },
-
-    loadFile: function () {
-        return JSON.parse(fs.readFileSync(module.exports.pathToTodosJson(), 'utf8'))
-
-    },
 
     init: function () {
-        fileData = module.exports.loadFile();
-
         for (var key in fileData) {
             $(".navigation-menu").append(`<p class="notebook">${key}</p>`)
         }
@@ -36,14 +29,12 @@ module.exports = {
     },
 
     displayNotesInNotebook: function (Notebook) {
-        fileData = module.exports.loadFile();
         for (var title in fileData[Notebook]) {
             $(".navigation-menu-medium").append(`<p class="note">${title}</p>`)
         }
     },
 
     loadNote: function () {
-        fileData = module.exports.loadFile();
         var editor = fileData[notebookSelected][noteSelected]["editor"]
         var dateCreated = fileData[notebookSelected][noteSelected]["dateCreated"]
         var lastModified = fileData[notebookSelected][noteSelected]["lastModified"]
