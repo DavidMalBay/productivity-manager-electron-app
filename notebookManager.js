@@ -17,16 +17,18 @@ module.exports = {
 
         module.exports.displayNotesInNotebook(lastSelectedNotbook)
 
-
         $('.navigation-menu').on('click', '.notebook', function () {
             $(".navigation-menu-medium").find(".note").remove()
             module.exports.displayNotesInNotebook($(this).text())
+            $(this).addClass("active-notebook").siblings().removeClass('active-notebook')
             notebookSelected = $(this).text()
         });
+        $(`.notebook:contains("${lastSelectedNotbook}")`).click();
 
 
         $('.navigation-menu-medium').on('click', '.note', function () {
             noteSelected = $(this).text()
+            $(this).addClass("active-note").siblings().removeClass('active-note')
             $("#note-title").val($(this).text())
             module.exports.loadNote()
 
