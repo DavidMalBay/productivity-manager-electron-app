@@ -6,6 +6,12 @@ NotebookManager.init();
 
 
 ipcRenderer.on('save', function (currentNotebook) {
-  console.log("saving file")
+  NotebookManager.saveNote()
 });
 
+ipcRenderer.on('new-note', function (currentNotebook) {
+  NotebookManager.newNote()
+});
+
+
+ 

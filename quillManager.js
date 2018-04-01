@@ -33,11 +33,30 @@ var toolbarOptions = [
     },
       theme: 'snow',
     });
+    $("#note-title").keydown(function (e) {    
+      if (e.which == 9) {
+       quill.focus()
+        e.preventDefault();
+      }
+    });
 
 
 module.exports = {
   setContent: function(content){
-    quill.setText(content)
+    quill.setContents(content)
+  },
+
+  clear: function(){
+    quill.setText("")
+  },
+
+  focus: function(){
+    quill.focus()
+  },
+
+  contents: function(){
+    return quill.getContents()
   }
+
   
 }

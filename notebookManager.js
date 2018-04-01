@@ -1,10 +1,12 @@
 var fs = require('fs')
-const quill = require("./quillManager")
+const quillEditor = require("./quillManager")
 
 var fileData = JSON.parse(fs.readFileSync(__dirname + "\\data\\Notebooks.json", 'utf8'))
 
 var notebookSelected = ""
 var noteSelected = ""
+var defaultNotebook = "Work"
+var saveNotebook = ""
 
 module.exports = {
 
@@ -42,8 +44,8 @@ module.exports = {
         var isStarred = fileData[notebookSelected][noteSelected]["isStarred"]
         var isArchived = fileData[notebookSelected][noteSelected]["isArchived"]
         var content = fileData[notebookSelected][noteSelected]["content"]
-        quill.setContent("")
-        quill.setContent(content)
+        quillEditor.clear();
+        quillEditor.setContent(content)
 
         //check file type
         //load desired editor
@@ -53,6 +55,46 @@ module.exports = {
         //example
         //console.log(fileData["Work"]["Monday Meeting"]["content"])
 
-    }
-}
+    },
 
+    newNote: function () {
+        //save any new changes
+        //clear the editor
+        //set focus on the title
+        //check for default editor or check for specific key to open up quillEditor.js
+        //want to give the user flexibility on which he wants to choose as the editor
+        quillEditor.clear();
+        $("#note-title").val("")
+        $("#note-title").focus()
+
+
+    },
+
+    saveNote: function () {
+        //check if its a new note or if you should update an existing note instead
+        var noteTitle = $("#note-title").val()
+        var noteContents = quillEditor.contents()
+        var noteEditor = "Quill"
+        if (notebookSelected == "") {
+            console.log("no folder selected")
+            saveNotebook = defaultNotebook
+        } else {
+            saveNotebook = notebookSelected
+        }
+        var noteInformation = {
+            editor: noteEditor,
+            dateCreated: "3/3/10", // dont hard code this if first time saving set if not leave it untouched
+            lastModified: "3/3/10", //get current date/time
+            tags: "", //come up with a good way to add tags
+            isStared: "0", //come up with a way to detect this
+            isArchived: "0", //check if the note is archived or not, if you are archiving it then you should trigger this
+            content: noteContents
+        }
+
+        fileData[saveNotebook][noteTitle] = noteInformation
+        fs.writeFile(__dirname + "\\data\\Notebooks.json", JSON.stringify(fileData), function (err) {
+            console.log(err)
+        }) 
+    }
+
+}

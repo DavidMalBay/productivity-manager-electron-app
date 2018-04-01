@@ -1,36 +1,147 @@
 {
-    "Work" :{
-        "Monday Meeting" :
-        {
-            "editor" : "Quill",
+    "Work": {
+        "Monday Meeting": {
+            "editor": "Quill",
             "dateCreated": "3/3/10",
-            "lastModified" : "3/3/10",
-            "tags" : ["work", "ideas"],
-            "isStarred" : 0,
-            "isArchived" : 0,
-            "content" : "today we talked about some cool ideas"
+            "lastModified": "3/3/10",
+            "tags": ["work", "ideas"],
+            "isStarred": 0,
+            "isArchived": 0,
+            "content": "today we talked about some cool ideas"
+        },
+        "maybe thats the error": {
+            "editor": "Quill",
+            "dateCreated": "3/3/10",
+            "lastModified": "3/3/10",
+            "tags": "",
+            "isStared": "0",
+            "isArchived": "0",
+            "content": {
+                "ops": [{
+                    "insert": "fak\n"
+                }]
+            }
+        },
+        "whats going on man": {
+            "editor": "Quill",
+            "dateCreated": "3/3/10",
+            "lastModified": "3/3/10",
+            "tags": "",
+            "isStared": "0",
+            "isArchived": "0",
+            "content": {
+                "ops": [{
+                    "attributes": {
+                        "color": "#008a00"
+                    },
+                    "insert": "Not much man how are you"
+                }, {
+                    "attributes": {
+                        "header": 1
+                    },
+                    "insert": "\n"
+                }]
+            }
+        },
+        "Family guy": {
+            "editor": "Quill",
+            "dateCreated": "3/3/10",
+            "lastModified": "3/3/10",
+            "tags": "",
+            "isStared": "0",
+            "isArchived": "0",
+            "content": {
+                "ops": [{
+                    "insert": "New note is coolio\n"
+                }]
+            }
         }
     },
-    "Life" :{
-        "Weekend" :
-        {
-            "editor" : "Quill",
+    "Life": {
+        "Weekend": {
+            "editor": "Quill",
             "dateCreated": "3/3/10",
-            "lastModified" : "3/3/10",
-            "tags" : ["fun", "weekend"],
-            "isStarred" : 0,
-            "isArchived" : 0,
-            "content" : "I dont have any plans for the weekend yet"
+            "lastModified": "3/3/10",
+            "tags": ["fun", "weekend"],
+            "isStarred": 0,
+            "isArchived": 0,
+            "content": "I dont have any plans for the weekend yet"
         },
-        "Dog" :
-        {
-            "editor" : "Quill",
+        "Dog": {
+            "editor": "Quill",
             "dateCreated": "3/3/10",
-            "lastModified" : "3/3/10",
-            "tags" : ["fun", "weekend"],
-            "isStarred" : 0,
-            "isArchived" : 0,
-            "content" : "We should take him to the dog park soon"
+            "lastModified": "3/3/10",
+            "tags": ["fun", "weekend"],
+            "isStarred": 0,
+            "isArchived": 0,
+            "content": "We should take him to the dog park soon"
+        },
+        "Tapingo night": {
+            "editor": "Quill",
+            "dateCreated": "3/3/10",
+            "lastModified": "3/3/10",
+            "tags": "",
+            "isStared": "0",
+            "isArchived": "0",
+            "content": {
+                "ops": [{
+                    "attributes": {
+                        "color": "#008a00"
+                    },
+                    "insert": "here is the things we have done "
+                }, {
+                    "insert": "\ndrive"
+                }, {
+                    "attributes": {
+                        "list": "ordered"
+                    },
+                    "insert": "\n"
+                }, {
+                    "insert": "get some food"
+                }, {
+                    "attributes": {
+                        "list": "ordered"
+                    },
+                    "insert": "\n"
+                }, {
+                    "insert": "idk what else"
+                }, {
+                    "attributes": {
+                        "list": "ordered"
+                    },
+                    "insert": "\n"
+                }, {
+                    "insert": "Ive been sleeping in my bed"
+                }, {
+                    "attributes": {
+                        "list": "ordered"
+                    },
+                    "insert": "\n"
+                }, {
+                    "insert": "so show me faily "
+                }, {
+                    "attributes": {
+                        "list": "ordered"
+                    },
+                    "insert": "\n"
+                }, {
+                    "insert": "what is goinf on man"
+                }, {
+                    "attributes": {
+                        "list": "ordered"
+                    },
+                    "insert": "\n"
+                }, {
+                    "insert": "yo its lit brod"
+                }, {
+                    "attributes": {
+                        "list": "ordered"
+                    },
+                    "insert": "\n"
+                }, {
+                    "insert": "\n\n\nover flow is handled well \n"
+                }]
+            }
         }
     }
 }
