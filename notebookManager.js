@@ -118,18 +118,26 @@ module.exports = {
     },
     
     newNotebook: function(nameOfNotebook){
+        //need to handle multi space names
         fileData[nameOfNotebook] = {}
         fs.writeFile(__dirname + "\\data\\Notebooks.json", JSON.stringify(fileData), function () {
         }) 
         console.log("created")
+        $(".navigation-menu").append(`<p class="notebook">${nameOfNotebook}</p>`)
+        $(`.notebook:contains("${nameOfNotebook}")`).click();
+
     },
 
     deleteNotebook: function(nameOfNotebook){
+        //need to handle multi space names
         if(fileData[nameOfNotebook]){
             delete fileData[nameOfNotebook]
             fs.writeFile(__dirname + "\\data\\Notebooks.json", JSON.stringify(fileData), function () {
             }) 
             console.log("deleted")
+            // $(".navigation-menu").append(`<p class="notebook">${key}</p>`)
+            $(`.notebook:contains("${nameOfNotebook}")`).remove();
+
         }
         else{
             console.log("No such notebook exists")

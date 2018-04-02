@@ -41,17 +41,24 @@
             inputCommands = inputCommands.split(" ")
             $('#context-modal').modal('hide');
             switch (inputCommands[0]) {
+
                 case "+n":
-                //if notebook does not already exist, create it 
-                    console.log("new notebook created " + inputCommands[1] + inputCommands[2])
-                    notebookManager.newNotebook(inputCommands[1])
+                    //if notebook does not already exist, create it 
+                    inputCommands.shift()
+                    inputCommands = inputCommands.join(" ")
+                    console.log("new notebook created " + inputCommands)
+                    notebookManager.newNotebook(inputCommands)
                     break;
                 case "-n":
-                    console.log("notebook deleted " + inputCommands[1]+inputCommands[2])
+                    inputCommands.shift()
+                    inputCommands = inputCommands.join(" ")
+                    console.log("notebook deleted " + inputCommands)
                     //check if notebook exists then delete if it does
-                    notebookManager.deleteNotebook(inputCommands[1])
+                    notebookManager.deleteNotebook(inputCommands)
                     break;
                 case "s":
+                    inputCommands.shift()
+                    inputCommands = inputCommands.join(" ")
                     console.log("settings")
                     break;
                 default:
