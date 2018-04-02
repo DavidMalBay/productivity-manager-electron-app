@@ -15,7 +15,7 @@ ipcRenderer.on('new-note', function (currentNotebook) {
 
 
 
-ipcRenderer.on('new-notebook', function () {
+ipcRenderer.on('quick-commands', function () {
   $('#context-modal').modal('toggle');
 });
 

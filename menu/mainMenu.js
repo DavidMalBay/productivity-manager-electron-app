@@ -6,12 +6,12 @@
           label: 'File',
           submenu: [
               {
-                label: 'New Notebook',
-                accelerator: 'CmdOrCtrl+Shift+N',
+                label: 'Quick Commands',
+                accelerator: 'F2',
                 selector: "new:",
                 click: function () {
                     var focusedWindow = BrowserWindow.getFocusedWindow();
-                    focusedWindow.webContents.send('new-notebook');
+                    focusedWindow.webContents.send('quick-commands');
                 }
 
             },
@@ -22,16 +22,6 @@
                 click: function () {
                     var focusedWindow = BrowserWindow.getFocusedWindow();
                     focusedWindow.webContents.send('new-note');
-                }
-
-            },
-            {
-                label: 'Focus Mode',
-                accelerator: 'F2',
-                selector: "focusMode:",
-                click: function () {
-                    var focusedWindow = BrowserWindow.getFocusedWindow();
-                    focusedWindow.webContents.send('focus-mode');
                 }
 
             },
