@@ -115,6 +115,26 @@ module.exports = {
 
 
         //if new make sure you append the new item to the notes list currently this isnt working
+    },
+    
+    newNotebook: function(nameOfNotebook){
+        fileData[nameOfNotebook] = {}
+        fs.writeFile(__dirname + "\\data\\Notebooks.json", JSON.stringify(fileData), function () {
+        }) 
+        console.log("created")
+    },
+
+    deleteNotebook: function(nameOfNotebook){
+        if(fileData.hasOwnProperty(nameOfNotebook)){
+            delete fileData[nameOfNotebook]
+            fs.writeFile(__dirname + "\\data\\Notebooks.json", JSON.stringify(fileData), function () {
+            }) 
+            console.log("deleted")
+        }
+        else{
+            console.log("No such notebook exists")
+        }
+        
     }
 
 }
