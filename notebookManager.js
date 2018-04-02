@@ -125,7 +125,7 @@ module.exports = {
     },
 
     deleteNotebook: function(nameOfNotebook){
-        if(fileData.hasOwnProperty(nameOfNotebook)){
+        if(fileData[nameOfNotebook]){
             delete fileData[nameOfNotebook]
             fs.writeFile(__dirname + "\\data\\Notebooks.json", JSON.stringify(fileData), function () {
             }) 
