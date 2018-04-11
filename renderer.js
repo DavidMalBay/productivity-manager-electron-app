@@ -20,3 +20,6 @@ ipcRenderer.on('quick-commands', function () {
 });
 
 
+$(function () {
+  $("[data-toggle='tooltip']").tooltip();
+});

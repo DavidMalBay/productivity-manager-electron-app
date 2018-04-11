@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="main.css">
   <link rel="stylesheet" href="node_modules\font-awesome\css\font-awesome.css"></link>
   <link rel="stylesheet" href="node_modules\fullcalendar\dist\fullcalendar.css"></link>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
   <script type="text/javascript" src="node_modules\jquery\dist\jquery.min.js" onload="window.$ = window.jQuery = module.exports;"></script>
   <script type="text/javascript" src="node_modules\moment\moment.js"></script>
   <script src="node_modules\fullcalendar\dist\fullcalendar.js"></script>
@@ -17,8 +18,18 @@
 
 <body>
 <div id="modal"></div>
+<div class="navigation-menu-xs">
+    <i class="fas fa-book active-nav" data-toggle="tooltip" data-placement="right" title="Notebooks"></i>
+    <i class="fas fa-calendar" data-toggle="tooltip" data-placement="right" title="Calendar"></i>
+    <i class="fas fa-columns" data-toggle="tooltip" data-placement="right" title="Kanbans"></i>
+    <i class="fas fa-check-square" data-toggle="tooltip" data-placement="right" title="Todos"></i>
+      <i class="fas fa-search" data-toggle="tooltip" data-placement="right" title="Search"></i>
+
+</div>
+
   <div class="navigation-menu">
     <p class="navigation-menu-title">Notebooks</p>
+    
   </div>
   <div class="navigation-menu-medium">
       <p class="navigation-menu-medium-title">Notes</p>
@@ -28,7 +39,10 @@
       <input type="text" id="tags" placeholder="tags"/>
 
     <div id="quillEditor">
+
     </div>
+    <div id="editor"></div>
+
   </div>
 
 
@@ -44,6 +58,42 @@
     crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4"
     crossorigin="anonymous"></script>
+
+    <script>
+        require.config({
+          paths: {
+            'vs': './node_modules/monaco-editor/min/vs'
+          }
+        });
+        require(['vs/editor/editor.main'], function () {
+          var editor = monaco.editor.create(document.getElementById('editor'), {
+            language: 'text/html',
+            minimap: {
+              enabled: false
+            },
+            theme: "vs-dark",
+          });
+          
+
+          window.addEventListener("resize", function resizeEditor() {
+            editor.layout();
+          });
+
+         $(document).ready(function () {
+            editor.layout();
+            $('#selectMode').on("change", function () {
+              var mode = this.options[this.selectedIndex].innerHTML;
+              monaco.editor.setModelLanguage(editor.getModel(), mode)
+            });
+          });
+          $(document).ready(function () {
+            $('#selectTheme').on("change", function () {
+              var themeColor = this.options[this.selectedIndex].innerHTML;
+              monaco.editor.setTheme(String(themeColor))
+            });
+          });
+        });
+      </script>
 </body>
 
 </html>

@@ -9,6 +9,20 @@ var noteSelected = ""
 var defaultNotebook = "Work"
 var saveNotebook = ""
 
+
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+
+var yyyy = today.getFullYear();
+if(dd<10){
+    dd='0'+dd;
+} 
+if(mm<10){
+    mm='0'+mm;
+} 
+var today = mm+'/'+dd+'/'+yyyy;
+
 // function truncate(string){
 //     if (string.length > 20)
 //        return string.substring(0,20)+'...';
@@ -63,8 +77,23 @@ module.exports = {
         var isStarred = fileData[notebookSelected][noteSelected]["isStarred"]
         var isArchived = fileData[notebookSelected][noteSelected]["isArchived"]
         var content = fileData[notebookSelected][noteSelected]["content"]
-        quillEditor.clear();
-        quillEditor.setContent(content)
+        console.log(editor)
+        if(editor == "Quill"){
+            $("#editor").hide()
+            module.exports.showQuill()
+            quillEditor.init()
+            quillEditor.clear();
+            quillEditor.setContent(content)
+        }
+        else if(editor == "Monaco") {
+            module.exports.hideQuill()
+            $("#editor").show()
+            
+
+
+        }
+
+
 
         //check file type
         //load desired editor
@@ -75,6 +104,18 @@ module.exports = {
         //console.log(fileData["Work"]["Monday Meeting"]["content"])
 
     },
+
+    showQuill: function(){
+        $("#quillEditor").show()
+        $(".ql-toolbar").show()
+    },
+
+    hideQuill: function(){
+        $("#quillEditor").hide()
+        $(".ql-toolbar").hide()
+    },
+
+
 
     newNote: function () {
         //save any new changes
@@ -100,8 +141,8 @@ module.exports = {
         }
         var noteInformation = {
             editor: noteEditor,
-            dateCreated: "3/3/10", // dont hard code this if first time saving set if not leave it untouched
-            lastModified: "3/3/10", //get current date/time
+            dateCreated: today, // dont hard code this if first time saving set if not leave it untouched
+            lastModified: today, //get current date/time
             tags: "", //come up with a good way to add tags
             isStared: "0", //come up with a way to detect this
             isArchived: "0", //check if the note is archived or not, if you are archiving it then you should trigger this
@@ -146,3 +187,5 @@ module.exports = {
     }
 
 }
+
+module.exports.hideQuill()

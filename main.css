@@ -1,8 +1,8 @@
 :root {
-    --navigation-menu-bg-color: rgba(49, 49, 49, 0.933);
+    --navigation-menu-bg-color: rgba(79, 79, 79, 0.933);
     --navigation-menu-text-color: white;
-    --navigation-menu-hover-bg-color: rgba(84, 84, 84, 0.933);
-    --navigation-menu-active-bg-color: rgba(48, 48, 48, 0.933);
+    --navigation-menu-hover-bg-color: rgba(102, 102, 102, 0.933);
+    --navigation-menu-active-bg-color: rgba(73, 73, 73, 0.933);
 
     --navigation-menu-medium-bg-color: rgb(235, 235, 235);
     --navigation-menu-medium-text-color: black;
@@ -18,6 +18,27 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
+    overflow: hidden;
+}
+
+.navigation-menu-xs{
+    height: 100vh;
+    width: 40px;
+    background-color: rgba(34, 34, 34, 0.933);
+    color: white;
+    float: left;
+    text-align: center;
+
+}
+
+.fas {
+    font-size: 20px;
+    padding: 12px 5px;
+    font-weight: thin
+}
+
+.fas:hover, .active-nav {
+    color: rgb(145, 238, 122)
 }
 
 .navigation-menu {
@@ -38,7 +59,7 @@ body {
 
 #userContent {
     height: calc(100% - 43px - 28.96px);
-    width: calc(100% - 360px);
+    width: calc(100% - 400px);
     float: left;
     border: 1px
 }
@@ -46,6 +67,11 @@ body {
 #quillEditor {
     height: 100%;
 }
+
+#editor {
+    height: calc(100% + 45px);
+
+ }
 
 .ql-container.ql-snow {
     border: none !important;
@@ -101,4 +127,8 @@ body {
 .navigation-menu-medium-title {
     padding-left: 7px;
     margin-bottom: 7px;
+}
+
+.hidden{
+    display: none;
 }

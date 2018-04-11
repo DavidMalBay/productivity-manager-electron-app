@@ -1,6 +1,15 @@
 const Quill = require('quill');
 
+
 var container = $('#quillEditor').get(0)
+var quill = new Quill(container, {
+  modules: {
+    toolbar: toolbarOptions,
+    // bindings: bindings
+  },
+    theme: 'snow',
+  });
+    
 var toolbarOptions = [
     ['bold', 'italic', 'underline', 'strike'], // toggled buttons
     ['blockquote', 'code-block'],
@@ -26,13 +35,7 @@ var toolbarOptions = [
     }],
     ['clean'] // remove formatting button
   ];
-  var quill = new Quill(container, {
-    modules: {
-      toolbar: toolbarOptions,
-      // bindings: bindings
-    },
-      theme: 'snow',
-    });
+  
     $("#note-title").keydown(function (e) {    
       if (e.which == 9) {
        quill.focus()
@@ -42,6 +45,19 @@ var toolbarOptions = [
 
 
 module.exports = {
+  init: function(){
+
+    // if(!($('#toolbar').length)){
+    //   $("quillEditor").remove()
+
+    // }
+      
+    // else{
+    //   console.log("no more")
+    // }
+    
+  },
+
   setContent: function(content){
     quill.setContents(content)
   },
