@@ -2,26 +2,27 @@ var fs = require('fs')
 const quillEditor = require("./quillManager")
 
 var fileData = JSON.parse(fs.readFileSync(__dirname + "\\data\\Notebooks.json", 'utf8'))
-var lastSelectedNotbook = "Work" // give the user the option to set a default open location 
+// console.log(lastSelectedNotbook)    // give the user the option to set a default open location 
 //var lastSelectedNote = //read from userSettings.json
+var lastSelectedNotbook = ""
 var notebookSelected = "" //if empty should this defualt to last notbook selected or defaultnotbook
 var noteSelected = ""
-var defaultNotebook = "Work"
+var defaultNotebook = $($(".notebook").get(0)).text()
 var saveNotebook = ""
 
 
 var today = new Date();
 var dd = today.getDate();
-var mm = today.getMonth()+1; //January is 0!
+var mm = today.getMonth() + 1; //January is 0!
 
 var yyyy = today.getFullYear();
-if(dd<10){
-    dd='0'+dd;
-} 
-if(mm<10){
-    mm='0'+mm;
-} 
-var today = mm+'/'+dd+'/'+yyyy;
+if (dd < 10) {
+    dd = '0' + dd;
+}
+if (mm < 10) {
+    mm = '0' + mm;
+}
+var today = mm + '/' + dd + '/' + yyyy;
 
 // function truncate(string){
 //     if (string.length > 20)
@@ -37,6 +38,8 @@ module.exports = {
             // key = truncate(key)
             $(".navigation-menu").append(`<p class="notebook">${key}</p>`)
         }
+        lastSelectedNotbook = $($(".notebook").get(0)).text() 
+
 
         module.exports.displayNotesInNotebook(lastSelectedNotbook)
 
@@ -48,6 +51,15 @@ module.exports = {
         });
         $(`.notebook:contains("${lastSelectedNotbook}")`).click();
 
+        
+        $('.navigation-menu').on('keypress', '.notebook', function () {
+            var keyC = e.keyCode;
+            if (keyC == 32) {
+                 alert('Enter pressed');
+            }
+        
+
+        });
 
         $('.navigation-menu-medium').on('click', '.note', function () {
             noteSelected = $(this).text()
@@ -56,6 +68,8 @@ module.exports = {
             module.exports.loadNote()
 
         });
+
+
 
     },
 
@@ -67,9 +81,9 @@ module.exports = {
     },
 
     loadNote: function () {
-        if(notebookSelected == ""){
+        if (notebookSelected == "") {
             notebookSelected = lastSelectedNotbook
-        } 
+        }
         var editor = fileData[notebookSelected][noteSelected]["editor"]
         var dateCreated = fileData[notebookSelected][noteSelected]["dateCreated"]
         var lastModified = fileData[notebookSelected][noteSelected]["lastModified"]
@@ -77,18 +91,16 @@ module.exports = {
         var isStarred = fileData[notebookSelected][noteSelected]["isStarred"]
         var isArchived = fileData[notebookSelected][noteSelected]["isArchived"]
         var content = fileData[notebookSelected][noteSelected]["content"]
-        console.log(editor)
-        if(editor == "Quill"){
+        if (editor == "Quill") {
             $("#editor").hide()
             module.exports.showQuill()
             quillEditor.init()
             quillEditor.clear();
             quillEditor.setContent(content)
-        }
-        else if(editor == "Monaco") {
+        } else if (editor == "Monaco") {
             module.exports.hideQuill()
             $("#editor").show()
-            
+            monaco.editor.getModels()[0].setValue(content)
 
 
         }
@@ -105,12 +117,12 @@ module.exports = {
 
     },
 
-    showQuill: function(){
+    showQuill: function () {
         $("#quillEditor").show()
         $(".ql-toolbar").show()
     },
 
-    hideQuill: function(){
+    hideQuill: function () {
         $("#quillEditor").hide()
         $(".ql-toolbar").hide()
     },
@@ -123,18 +135,30 @@ module.exports = {
         //set focus on the title
         //check for default editor or check for specific key to open up quillEditor.js
         //want to give the user flexibility on which he wants to choose as the editor
-        quillEditor.clear();
         $("#note-title").val("")
         $("#note-title").focus()
+        if ($("#quillEditor").is(":visible")) {
+
+            quillEditor.clear();
+
+        } else {
+            monaco.editor.getModels()[0].setValue("")
+        }
+
     },
 
     saveNote: function () {
         //check if its a new note or if you should update an existing note instead
         var noteTitle = $("#note-title").val()
-        var noteContents = quillEditor.contents()
-        var noteEditor = "Quill"
+        if ($("#quillEditor").is(":visible")) {
+            var noteEditor = "Quill"
+            var noteContents = quillEditor.contents()
+
+        } else {
+            var noteEditor = "Monaco"
+            var noteContents = monaco.editor.getModels()[0].getValue()
+        }
         if (notebookSelected == "") {
-            console.log("no folder selected")
             saveNotebook = defaultNotebook
         } else {
             saveNotebook = notebookSelected
@@ -150,40 +174,36 @@ module.exports = {
         }
 
         fileData[saveNotebook][noteTitle] = noteInformation
-        fs.writeFile(__dirname + "\\data\\Notebooks.json", JSON.stringify(fileData), function () {
-        }) 
+        fs.writeFile(__dirname + "\\data\\Notebooks.json", JSON.stringify(fileData), function () {})
         $(`.notebook:contains("${notebookSelected}")`).click();
 
 
         //if new make sure you append the new item to the notes list currently this isnt working
     },
-    
-    newNotebook: function(nameOfNotebook){
+
+    newNotebook: function (nameOfNotebook) {
         //need to handle multi space names
         fileData[nameOfNotebook] = {}
-        fs.writeFile(__dirname + "\\data\\Notebooks.json", JSON.stringify(fileData), function () {
-        }) 
+        fs.writeFile(__dirname + "\\data\\Notebooks.json", JSON.stringify(fileData), function () {})
         console.log("created")
         $(".navigation-menu").append(`<p class="notebook">${nameOfNotebook}</p>`)
         $(`.notebook:contains("${nameOfNotebook}")`).click();
 
     },
 
-    deleteNotebook: function(nameOfNotebook){
+    deleteNotebook: function (nameOfNotebook) {
         //need to handle multi space names
-        if(fileData[nameOfNotebook]){
+        if (fileData[nameOfNotebook]) {
             delete fileData[nameOfNotebook]
-            fs.writeFile(__dirname + "\\data\\Notebooks.json", JSON.stringify(fileData), function () {
-            }) 
+            fs.writeFile(__dirname + "\\data\\Notebooks.json", JSON.stringify(fileData), function () {})
             console.log("deleted")
             // $(".navigation-menu").append(`<p class="notebook">${key}</p>`)
             $(`.notebook:contains("${nameOfNotebook}")`).remove();
 
-        }
-        else{
+        } else {
             console.log("No such notebook exists")
         }
-        
+
     }
 
 }

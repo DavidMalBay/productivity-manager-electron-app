@@ -7,6 +7,7 @@ $("#modal").load("./menu/modal.html")
 
 ipcRenderer.on('save', function (currentNotebook) {
   NotebookManager.saveNote()
+  console.log("save")
 });
 
 ipcRenderer.on('new-note', function (currentNotebook) {
@@ -23,3 +24,7 @@ ipcRenderer.on('quick-commands', function () {
 $(function () {
   $("[data-toggle='tooltip']").tooltip();
 });
+
+$("[data-toggle='tooltip']").on("click", function () {
+  $(this).addClass('active-nav').siblings().removeClass('active-nav');
+})

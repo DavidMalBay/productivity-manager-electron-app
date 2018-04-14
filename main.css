@@ -1,8 +1,8 @@
 :root {
-    --navigation-menu-bg-color: rgba(79, 79, 79, 0.933);
+    --navigation-menu-bg-color: rgba(54, 54, 54, 0.933);
     --navigation-menu-text-color: white;
     --navigation-menu-hover-bg-color: rgba(102, 102, 102, 0.933);
-    --navigation-menu-active-bg-color: rgba(73, 73, 73, 0.933);
+    --navigation-menu-active-bg-color: rgba(36, 36, 36, 0.933);
 
     --navigation-menu-medium-bg-color: rgb(235, 235, 235);
     --navigation-menu-medium-text-color: black;
@@ -83,14 +83,6 @@ body {
     padding-left: 15px;
 }
 
-#tags{
-    border: 0px;
-    width: 20%;
-    float: right;
-    padding-left: 5px;
-    color: rgb(161, 161, 161)
-
-}
 
 .ql-toolbar.ql-snow {
     border: none;
